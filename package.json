@@ -8,6 +8,11 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-emoji"
+    }
+  },
   "dependencies": {
     "commitizen": "^4.3.1",
     "vue": "^3.5.10",
