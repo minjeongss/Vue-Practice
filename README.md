@@ -15,8 +15,152 @@ yarn dev
 
 ## 컴포넌트 사용법
 
-## 변수 및 함수 사용법
+- script
+  - export default: 전체 내용 등록
+  - name: 컴포넌트명
+  - data: 데이터 등록
+  - methods: 함수 등록
+  - components: 컴포넌트 리스트 등록, 객체 형태로 등록해야 함에 유의 ⚠️
+  - props: 전달받은 props 등록
+- template: 컴포넌트 내용 등록
+- style: 스타일 등록
+
+```vue
+<script></script>
+<template></template>
+<style></style>
+```
+
+## 데이터 및 함수 사용법
+
+- 데이터 등록
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      count: 0,
+    };
+  },
+};
+</script>
+```
+
+- 함수 등록
+
+```vue
+<script>
+export default {
+  methods: {
+    counter() {
+      this.count++;
+    },
+  },
+};
+</script>
+```
+
+- 함수 사용
+
+```vue
+<template>
+  <button @click="counter">UP!</button>
+</template>
+```
 
 ## props 사용법
 
+- 전달하는 컴포넌트
+  - components: 받는 컴포넌트 등록
+  - data: 전달할 데이터 등록
+  - template 내부의 컴포넌트: `:별칭="데이터"` 형식으로 데이터 전달
+
+```vue
+<script>
+import Container from "./Container.vue";
+export default {
+  name: "Detail",
+  components: {
+    Container,
+  },
+  data() {
+    return {
+      count: 0,
+    };
+  },
+};
+</script>
+<template>
+  <Container :count="count" />
+</template>
+```
+
+- 받는 컴포넌트
+  - props: `데이터: 자료형` 형식으로 props 등록
+
+```vue
+<script>
+export default {
+  name: "Container",
+  props: {
+    count: Number,
+  },
+};
+</script>
+
+<template>
+  <p>현재 카운터 수: {{ count }}</p>
+</template>
+```
+
 ## 라우터 사용법
+
+1. vue-router 설치
+2. main.js에 router 추가
+
+```js
+createApp(App).use(router).mount("#app");
+```
+
+3. src/router/index.js에 router 속성 구현
+
+- createRouter
+- history: createWebHistory()
+- routes: 배열 속 객체로 등록
+  - path: URL
+  - name: 별칭
+  - component: 불러올 컴포넌트
+
+```js
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../components/Home.vue";
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [{ path: "", name: "home", component: Home }],
+});
+
+export default router;
+```
+
+4. 사용할 컴포넌트에 router 불러오기
+
+App.vue에서 사용할 예정이다.
+
+- RouterLink: a태그이며, 클릭하면 해당 URL로 이동
+  - to: URL
+- RouterView: 현재 활성화된 라우트에 따라 보여줄 컴포넌트를 렌더링하는 위치
+
+```vue
+<script>
+import { RouterLink, RouterView } from "vue-router";
+</script>
+<template>
+  <div id="app">
+    <nav>
+      <RouterLink to="/">home</RouterLink>
+    </nav>
+    <RouterView />
+  </div>
+</template>
+```
