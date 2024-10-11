@@ -1,9 +1,11 @@
 <script>
+import Button from "./Button.vue";
 import Container from "./Container.vue";
 export default {
   name: "Detail",
   components: {
     Container,
+    Button,
   },
   data() {
     return {
@@ -20,7 +22,7 @@ export default {
 
 <template>
   <h2>Detail</h2>
-  <button @click="counter">UP!</button>
+  <Button @btnClick="counter" />
   <Container :count="count" />
 </template>
 

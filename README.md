@@ -1,4 +1,4 @@
-# Vue 분석기 🧪
+# Vue 분석기 ☁️
 
 ## 설치
 
@@ -71,7 +71,9 @@ export default {
 
 ## props 사용법
 
-- 전달하는 컴포넌트
+### 값 전달
+
+- 상위 컴포넌트
   - components: 받는 컴포넌트 등록
   - data: 전달할 데이터 등록
   - template 내부의 컴포넌트: `:별칭="데이터"` 형식으로 데이터 전달
@@ -96,7 +98,7 @@ export default {
 </template>
 ```
 
-- 받는 컴포넌트
+- 하위 컴포넌트
   - props: `데이터: 자료형` 형식으로 props 등록
 
 ```vue
@@ -111,6 +113,62 @@ export default {
 
 <template>
   <p>현재 카운터 수: {{ count }}</p>
+</template>
+```
+
+### 함수 전달
+
+- 상위 컴포넌트
+  - components: 하위 컴포넌트 등록
+  - methods: 전달할 함수 등록
+  - template: `@별칭="전달할 함수"` 형식으로 props 등록
+
+```vue
+<script>
+import Button from "./Button.vue";
+export default {
+  name: "Detail",
+  components: {
+    Button,
+  },
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  methods: {
+    counter() {
+      this.count++;
+    },
+  },
+};
+</script>
+
+<template>
+  <h2>Detail</h2>
+  <Button @btnClick="counter" />
+</template>
+```
+
+- 하위 컴포넌트
+  - emits: 상위로부터 전달받은 함수 선언
+  - methods: 사용할 함수 내부에 this.$emit('전달받은 함수') 형식으로 props 등록
+
+```vue
+<script>
+export default {
+  name: "Button",
+  emits: ["btnClick"],
+  methods: {
+    handleClick() {
+      this.$emit("btnClick");
+    },
+  },
+};
+</script>
+
+<template>
+  <button @click="handleClick">UP 🚀</button>
 </template>
 ```
 

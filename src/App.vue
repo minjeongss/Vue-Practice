@@ -1,23 +1,18 @@
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import Container from "./components/Container.vue";
-import Header from "./components/Header.vue";
+import { RouterView } from "vue-router";
+import Header from "./layout/Header.vue";
 
 export default {
   name: "APP",
   components: {
     Header,
-    Container,
   },
 };
 </script>
 
 <template>
   <div id="app">
-    <nav>
-      <RouterLink to="/">home</RouterLink>
-      <RouterLink to="/detail">detail</RouterLink>
-    </nav>
+    <Header />
     <RouterView />
   </div>
 </template>
