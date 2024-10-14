@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Button",
+  name: "CounterButton",
   emits: ["btnClick"],
   methods: {
     handleClick() {

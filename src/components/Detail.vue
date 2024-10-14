@@ -1,11 +1,13 @@
 <script>
-import Button from "./Button.vue";
-import Container from "./Container.vue";
+import CounterButton from "./CounterButton.vue";
+import CounterContainer from "./CounterContainer.vue";
+import FullNameInput from "./FullNameInput.vue";
 export default {
   name: "Detail",
   components: {
-    Container,
-    Button,
+    CounterContainer,
+    CounterButton,
+    FullNameInput,
   },
   data() {
     return {
@@ -22,8 +24,9 @@ export default {
 
 <template>
   <h2>Detail</h2>
-  <Button @btnClick="counter" />
-  <Container :count="count" />
+  <CounterButton @btnClick="counter" />
+  <CounterContainer :count="count" />
+  <FullNameInput />
 </template>
 
 <style scoped></style>

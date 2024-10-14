@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Container",
+  name: "CounterContainer",
   props: {
     count: Number,
   },

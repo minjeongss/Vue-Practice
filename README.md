@@ -69,6 +69,47 @@ export default {
 </template>
 ```
 
+## 데이터 가공 및 실시간 표현 방법
+
+### 데이터 가공
+
+- data: 사용할 데이터 선언
+- computed: 기존의 데이터를 활용해 가공한 데이터 선언
+- template에서 computed에 선언한 내용 사용
+
+```vue
+<script>
+export default {
+  name: "FullNameInput",
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+    };
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    },
+  },
+};
+</script>
+<template>
+  <p>이름: {{ fullName }}</p>
+</template>
+```
+
+### 실시간 데이터 표현
+
+- v-model: 입력에 대한 실시간 데이터 처리
+
+```vue
+<template>
+  <input type="text" v-model="firstName" placeholder="firstName" />
+  <input type="text" v-model="lastName" placeholder="lastName" />
+</template>
+```
+
 ## props 사용법
 
 ### 값 전달
