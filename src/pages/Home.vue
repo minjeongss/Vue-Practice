@@ -1,9 +1,11 @@
 <script>
-import Logo from "./Logo.vue";
+import CloudInfo from "../components/CloudInfo.vue";
+import Logo from "../components/Logo.vue";
 export default {
   name: "Home",
   components: {
     Logo,
+    CloudInfo,
   },
   data() {
     return {
@@ -14,15 +16,11 @@ export default {
 </script>
 
 <template>
-  <h2>Home</h2>
+  <h2 hidden>Home</h2>
   <div class="logoContainer">
     <Logo v-for="width in widthArray" :key="width" :width="width" />
   </div>
+  <CloudInfo />
 </template>
 
-<style scoped>
-.logoContainer {
-  display: flex;
-  align-items: flex-end;
-}
-</style>
+<style scoped></style>

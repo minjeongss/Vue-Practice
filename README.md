@@ -1,10 +1,20 @@
 # Vue 분석기 ☁️
 
+## 목차
+
+- [컴포넌트 사용법](#컴포넌트-사용법)
+- [데이터 및 함수 사용법](#데이터-및-함수-사용법)
+- [데이터 가공 및 실시간 표현 방법](#데이터-가공-및-실시간-표현-방법)
+- [props 사용법](#props-사용법)
+- [라우터 사용법](#라우터-사용법)
+- [상태관리 사용법](#상태관리-사용법)
+
 ## 설치
 
 ```
 yarn create vite
 yarn add vue-router
+yarn add pinia
 ```
 
 ## 실행
@@ -261,5 +271,65 @@ import { RouterLink, RouterView } from "vue-router";
     </nav>
     <RouterView />
   </div>
+</template>
+```
+
+## 상태관리 사용법
+
+1. main.js에서 pinia 등록
+
+```js
+import { createPinia } from "pinia";
+
+const pinia = createPinia();
+const app = createApp(App);
+
+app.use(pinia);
+app.mount("#app");
+```
+
+2. stores/cloudStore.js에서 Store 정보 등록
+
+- state: data와 동일
+- getters: computed와 동일
+- actions: method와 동일
+
+```js
+import { defineStore } from "pinia";
+export const useCloudStore = defineStore("cloud", {
+  state: () => ({ cloudName: "뭉게구름", cloudCount: 5 }),
+  getters: {
+    doubleCloudCount: (state) => state.cloudCount * 2,
+  },
+  actions: {
+    increment() {
+      this.cloudCount++;
+    },
+  },
+});
+```
+
+3. components/CloudInfo.vue에서 Store 정보 READ
+
+- setup(): useCloudStore로 불러오기
+- template: setup()에서 return한 형태로 불러오기
+
+```vue
+<script>
+import { useCloudStore } from "../stores/cloudStore";
+
+export default {
+  name: "CloudInfo",
+  setup() {
+    const cloudStore = useCloudStore();
+    return {
+      cloudStore,
+    };
+  },
+};
+</script>
+
+<template>
+  <h3>{{ cloudStore.cloudName }}</h3>
 </template>
 ```

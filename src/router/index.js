@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../components/Home.vue";
-import Detail from "../components/Detail.vue";
+import Home from "../pages/Home.vue";
+import Detail from "../pages/Detail.vue";
+import CloudEdit from "../pages/CloudEdit.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -9,6 +10,11 @@ const router = createRouter({
       path: "/detail",
       name: "detail",
       component: Detail,
+    },
+    {
+      path: "/cloudEdit",
+      name: "cloudEdit",
+      component: CloudEdit,
     },
   ],
 });

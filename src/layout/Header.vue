@@ -10,6 +10,7 @@ export default {
   <nav>
     <RouterLink to="/"><button>#Home</button></RouterLink>
     <RouterLink to="/detail"><button>#Detail</button></RouterLink>
+    <RouterLink to="/cloudEdit"><button>#CloudEdit</button></RouterLink>
   </nav>
 </template>
 

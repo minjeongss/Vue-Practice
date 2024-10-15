@@ -1,7 +1,7 @@
 <script>
-import CounterButton from "./CounterButton.vue";
-import CounterContainer from "./CounterContainer.vue";
-import FullNameInput from "./FullNameInput.vue";
+import CounterButton from "../components/CounterButton.vue";
+import CounterContainer from "../components/CounterContainer.vue";
+import FullNameInput from "../components/FullNameInput.vue";
 export default {
   name: "Detail",
   components: {

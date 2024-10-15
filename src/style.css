@@ -66,6 +66,11 @@ button:focus-visible {
   text-align: center;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

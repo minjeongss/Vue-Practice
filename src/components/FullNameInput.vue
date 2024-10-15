@@ -16,9 +16,16 @@ export default {
 </script>
 
 <template>
-  <input type="text" v-model="firstName" placeholder="firstName" />
-  <input type="text" v-model="lastName" placeholder="lastName" />
-  <p>이름: {{ fullName }}</p>
+  <label for="firstName">성: </label>
+  <input
+    type="text"
+    id="firstName"
+    v-model="firstName"
+    placeholder="firstName"
+  />
+  <label for="lastName"> 이름: </label>
+  <input type="text" id="lastName" v-model="lastName" placeholder="lastName" />
+  <p>전체 이름: {{ fullName }}</p>
 </template>
 
 <style scoped></style>
