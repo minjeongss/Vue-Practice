@@ -311,7 +311,7 @@ export const useCloudStore = defineStore("cloud", {
 
 3. components/CloudInfo.vue에서 Store 정보 READ
 
-- setup(): useCloudStore로 불러오기
+- setup(): useCloudStore로 Store 정보 불러오기
 - template: setup()에서 return한 형태로 불러오기
 
 ```vue
@@ -331,5 +331,46 @@ export default {
 
 <template>
   <h3>{{ cloudStore.cloudName }}</h3>
+</template>
+```
+
+4. components/CloudInput.vue에서 store 정보 Update
+
+- setup()
+  - useCloudStore로 Store 정보 불러오기
+  - updateCloudName으로 Store 정보 업데이트하는 함수 선언하기
+- template의 input
+  - :value: cloudName 연동하기
+  - :@input: updateCloudName 연동해,값이 바뀌면 cloudName 업데이트하기
+
+```vue
+<script>
+import { useCloudStore } from "../stores/cloudStore";
+
+export default {
+  name: "CloudInput",
+  setup() {
+    const cloudStore = useCloudStore();
+    const updateCloudName = (event) => {
+      cloudStore.cloudName = event.target.value;
+    };
+    return {
+      cloudStore,
+      updateCloudName,
+    };
+  },
+};
+</script>
+
+<template>
+  <section>
+    <label for="cloudName">구름 이름: </label>
+    <input
+      type="text"
+      id="cloudName"
+      :value="cloudStore.cloudName"
+      @input="updateCloudName"
+    />
+  </section>
 </template>
 ```
